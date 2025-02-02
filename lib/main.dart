@@ -1,4 +1,5 @@
 import 'package:e_commerc/features/main_layout/home/cubit/home_tab_view_model.dart';
+import 'package:e_commerc/features/products_screen/presentation/cubit/products_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,9 +15,11 @@ void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<HomeTabViewModel>(
       create: (context) => getIt<HomeTabViewModel>(),
+    ),
+    BlocProvider<ProductsViewModel>(
+      create: (context) => getIt<ProductsViewModel>(),
     )
-  ],
-      child: MyApp()));
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

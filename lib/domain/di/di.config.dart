@@ -29,10 +29,13 @@ import '../../features/auth.presentation.screens/register/cubit/register_view_mo
     as _i150;
 import '../../features/main_layout/home/cubit/home_tab_view_model.dart'
     as _i222;
+import '../../features/products_screen/presentation/cubit/products_view_model.dart'
+    as _i494;
 import '../repository/auth_repository.dart' as _i106;
 import '../repository/home_repository.dart' as _i326;
 import '../use_cases/get_all_brands_use_case.dart' as _i59;
 import '../use_cases/get_all_category_use_case.dart' as _i1069;
+import '../use_cases/get_all_products_use_case.dart' as _i564;
 import '../use_cases/login_use_case.dart' as _i119;
 import '../use_cases/register_use_case.dart' as _i526;
 
@@ -60,12 +63,16 @@ extension GetItInjectableX on _i174.GetIt {
         homeRepository: gh<_i326.HomeRepository>()));
     gh.factory<_i59.GetAllBrandsUseCase>(() =>
         _i59.GetAllBrandsUseCase(homeRepository: gh<_i326.HomeRepository>()));
+    gh.factory<_i564.GetAllProductsUseCase>(() => _i564.GetAllProductsUseCase(
+        homeRepository: gh<_i326.HomeRepository>()));
     gh.factory<_i119.LoginUseCase>(
         () => _i119.LoginUseCase(authRepository: gh<_i106.AuthRepository>()));
     gh.factory<_i526.RegisterUseCase>(() =>
         _i526.RegisterUseCase(authRepository: gh<_i106.AuthRepository>()));
     gh.factory<_i150.RegisterViewModel>(() =>
         _i150.RegisterViewModel(registerUseCase: gh<_i526.RegisterUseCase>()));
+    gh.factory<_i494.ProductsViewModel>(() => _i494.ProductsViewModel(
+        getAllProductsUseCase: gh<_i564.GetAllProductsUseCase>()));
     gh.factory<_i222.HomeTabViewModel>(() => _i222.HomeTabViewModel(
           getAllCategoryUseCase: gh<_i1069.GetAllCategoryUseCase>(),
           getAllBrandsUseCase: gh<_i59.GetAllBrandsUseCase>(),
