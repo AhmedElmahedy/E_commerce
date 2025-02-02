@@ -9,7 +9,7 @@ import '../../core/core/widget/home_screen_app_bar.dart';
 
 
 class MainLayout extends StatefulWidget {
-  MainLayout({super.key});
+  const MainLayout({super.key});
 
   @override
   State<MainLayout> createState() => _MainLayoutState();

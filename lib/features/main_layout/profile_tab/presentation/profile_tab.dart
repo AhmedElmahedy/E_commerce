@@ -1,3 +1,5 @@
+import 'package:e_commerc/core/core/routes_manager/routes.dart';
+import 'package:e_commerc/core/core/widget/hive_preference_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,10 +46,20 @@ class ProfileTabState extends State<ProfileTab> {
                 ),
               ),
               SizedBox(height: AppSize.s20.h),
-              Text(
-                'Welcome, Mohamed',
-                style: getSemiBoldStyle(
-                    color: ColorManager.primary, fontSize: FontSize.s18),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Welcome, Mohamed',
+                    style: getSemiBoldStyle(
+                        color: ColorManager.primary, fontSize: FontSize.s18),
+                  ),
+                  IconButton(onPressed: ()  {
+                    // todo : remove token
+                    HivePreferenceUtil.removeData(key: "token");
+                   Navigator.of(context).pushNamedAndRemoveUntil(Routes.signInRoute, (route)=> false);
+                  }, icon: Icon(Icons.logout ))
+                ],
               ),
               Text(
                 'mohamed.N@gmail.com',

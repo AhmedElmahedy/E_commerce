@@ -4,7 +4,6 @@ import '../../../features/auth.presentation.screens/login/presentation/login_scr
 import '../../../features/auth.presentation.screens/register/presentation/register_screen.dart';
 import '../../../features/cart/screens/cart_screen.dart';
 import '../../../features/main_layout/main_layout.dart';
-import '../../../features/product_details/presentation/screen/product_details.dart';
 import '../../../features/products_screen/presentation/screens/products_screen.dart';
 import '../../../features/splash/splash_screen.dart';
 

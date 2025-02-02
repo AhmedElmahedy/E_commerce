@@ -3,7 +3,6 @@ import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
 import 'package:e_commerc/domain/repository/home_repository.dart';
 import 'package:injectable/injectable.dart';
 
-import '../entities/CategoriesOrBrandsResponseEntity.dart';
 import '../failures.dart';
 
 @injectable

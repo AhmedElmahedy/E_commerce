@@ -1,4 +1,6 @@
 import 'package:e_commerc/core/core/widget/dialog_utils.dart';
+import 'package:e_commerc/core/core/widget/hive_preference_util.dart';
+import 'package:e_commerc/core/core/widget/shared_preference_util.dart';
 import 'package:e_commerc/domain/di/di.dart';
 import 'package:e_commerc/features/auth.presentation.screens/login/cubit/login_states.dart';
 import 'package:e_commerc/features/auth.presentation.screens/login/cubit/login_view_model.dart';
@@ -37,10 +39,10 @@ class LoginScreen extends StatelessWidget {
         }else if(states is LoginSuccessState){
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(context: context, message: "Login Successfully",
-              title: "Success",posActionName: "ok",
-          posAction: (){
-            Navigator.pushReplacementNamed(context, Routes.mainRoute);
-          });
+              title: "Success",posActionName: "ok",);
+          // todo : save token
+          HivePreferenceUtil.saveData(key: "token", value: states.loginResponseEntity.token);
+          Navigator.pushReplacementNamed(context, Routes.mainRoute);
         }
       },
       child: Scaffold(

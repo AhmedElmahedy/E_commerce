@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
+import 'package:e_commerc/core/core/widget/shared_preference_util.dart';
 import 'package:e_commerc/data/api_manager.dart';
 import 'package:e_commerc/data/data_sources/remote_data_source/auth_remote_data_source.dart';
 import 'package:e_commerc/data/end_point.dart';
@@ -30,6 +31,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
           "phone": phone
         });
         var registerResponse = RegisterResponseDto.fromJson(response.data);
+
         if (response.statusCode! >= 200 && response.statusCode! < 300) {
           return Right(registerResponse);
         } else {
@@ -56,6 +58,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         var response = await apiManager.postData(EndPoint.login,
             body: {"email": email, "password": password});
         var loginResponse = LoginResponseDto.fromJson(response.data);
+        // SharedPreferenceUtil.saveData(key: "token", value: loginResponse.token);
         if (response.statusCode! >= 200 && response.statusCode! < 300) {
           return Right(loginResponse);
         } else {
