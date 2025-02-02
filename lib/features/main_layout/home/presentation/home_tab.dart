@@ -51,12 +51,12 @@ class HomeTab extends StatelessWidget {
                           crossAxisCount: 2,
                         ),
                       ),
-                    )
+                    ),
                     // Center(
                     //    child: CircularProgressIndicator(
                     //    color: ColorManager.primary,
                     //  )),
-                    ,
+
                     SizedBox(height: 12.h),
                     CustomSectionBar(sectionNname: 'Brands', function: () {}),
                     SizedBox(
@@ -76,7 +76,7 @@ class HomeTab extends StatelessWidget {
                           crossAxisCount: 2,
                         ),
                       ),
-                    )
+                    ),
                     // : Center(child: CircularProgressIndicator(color: ColorManager.primary,)),
 
                     // CustomSectionBar(
@@ -103,7 +103,7 @@ class HomeTab extends StatelessWidget {
                     //     ),
                     //   ),
                     // ),
-                    ,
+
                     SizedBox(height: 12.h),
                   ],
                 )
