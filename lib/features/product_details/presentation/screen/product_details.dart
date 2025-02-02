@@ -7,13 +7,9 @@ import '../../../../core/core/resources/assets_manager.dart';
 import '../../../../core/core/resources/color_manager.dart';
 import '../../../../core/core/resources/styles_manager.dart';
 import '../../../../core/core/widget/custom_elevated_button.dart';
-import '../widgets/product_color.dart';
 import '../widgets/product_description.dart';
-import '../widgets/product_item.dart';
 import '../widgets/product_label.dart';
 import '../widgets/product_rating.dart';
-import '../widgets/product_size.dart';
-import '../widgets/product_slider.dart';
 
 class ProductDetails extends StatelessWidget {
   ProductDataEntity product;
@@ -110,7 +106,7 @@ class ProductDetails extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'Total price',
+                      'Total price', 
                       style: getMediumStyle(
                               color: ColorManager.primary.withOpacity(.6))
                           .copyWith(fontSize: 18.sp),

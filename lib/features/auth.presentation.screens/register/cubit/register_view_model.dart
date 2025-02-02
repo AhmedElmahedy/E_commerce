@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:e_commerc/domain/use_cases/register_use_case.dart';
 import 'package:e_commerc/features/auth.presentation.screens/register/cubit/register_states.dart';
 import 'package:flutter/material.dart';

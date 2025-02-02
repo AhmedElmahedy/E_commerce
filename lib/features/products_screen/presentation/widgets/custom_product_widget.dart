@@ -5,14 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/core/resources/color_manager.dart';
 import '../../../../core/core/resources/styles_manager.dart';
-import '../../../../core/core/routes_manager/routes.dart';
 import '../../../../core/core/widget/heart_button.dart';
 
 
 
 class CustomProductWidget extends StatelessWidget {
  ProductDataEntity product;
- CustomProductWidget({required this.product});
+ CustomProductWidget({super.key, required this.product});
 
   String truncateTitle(String title) {
     List<String> words = title.split(' ');

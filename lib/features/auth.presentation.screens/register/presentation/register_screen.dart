@@ -18,6 +18,8 @@ import '../../../../../../core/core/widget/validators.dart';
 class RegisterScreen extends StatelessWidget {
   RegisterViewModel viewModel = getIt<RegisterViewModel>();
 
+  RegisterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<RegisterViewModel, RegisterStates>(

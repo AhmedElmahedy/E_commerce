@@ -11,7 +11,7 @@ import 'widgets/custom_category_widget.dart';
 import 'widgets/custom_section_bar.dart';
 
 class HomeTab extends StatelessWidget {
-  HomeTab({super.key});
+  const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {

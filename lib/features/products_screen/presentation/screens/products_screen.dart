@@ -5,14 +5,12 @@ import 'package:e_commerc/features/products_screen/presentation/cubit/products_v
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/core/resources/assets_manager.dart';
 import '../../../../core/core/resources/values_manager.dart';
-import '../../../../core/core/routes_manager/routes.dart';
 import '../../../../core/core/widget/home_screen_app_bar.dart';
 import '../widgets/custom_product_widget.dart';
 
 class ProductsScreen extends StatelessWidget {
-  ProductsScreen({super.key});
+  const ProductsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
