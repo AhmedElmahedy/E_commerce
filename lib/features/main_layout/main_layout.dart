@@ -24,7 +24,7 @@ class _MainLayoutState extends State<MainLayout> {
       bloc: viewModel,
       builder: (context, state) {
         return Scaffold(
-          appBar: const HomeScreenAppBar(),
+           appBar: const HomeScreenAppBar(),
          // extendBody: false,
           body: viewModel.tabs[viewModel.currentIndex],
           bottomNavigationBar: ClipRRect(

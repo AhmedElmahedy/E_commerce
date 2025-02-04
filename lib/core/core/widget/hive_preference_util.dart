@@ -7,16 +7,20 @@ class HivePreferenceUtil {
     box = await Hive.openBox('appBox');
   }
 
-  static Future<void> saveData({required String key, required dynamic value})async{
-    await box.put(key, value);
+  static Future<String> saveData({required String key, required dynamic value})async{
+   var token = await box.put(key, value);
+   return token as String ;
   }
 
-  static Future<void> getData ({required String key})async{
-    await box.get(key);
+
+  static Future<String> getData ({required String key})async{
+   var value = await box.get(key) ;
+   return value != null ? value as String : '';
   }
 
-  static Future<void> removeData({required String key})async{
-    await box.delete(key);
+  static Future<String> removeData({required String key})async{
+   var value = await box.delete(key);
+   return value as String ;
   }
 
 }
