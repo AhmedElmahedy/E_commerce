@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
+import 'package:e_commerc/features/products_screen/presentation/cubit/products_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -147,7 +148,11 @@ class CustomProductWidget extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            // todo : Add To Cart
+                            print("click add to cart");
+                            ProductsViewModel.get(context).addToCart(product.id ?? "");
+                          },
                           child: Container(
                             height: 30.h,
                             width:30.w,
