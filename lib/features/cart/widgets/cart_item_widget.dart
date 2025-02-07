@@ -8,10 +8,7 @@ import '../../../core/core/resources/assets_manager.dart';
 import '../../../core/core/resources/color_manager.dart';
 import '../../../core/core/resources/styles_manager.dart';
 import '../../../core/core/resources/values_manager.dart';
-import '../../../core/core/routes_manager/routes.dart';
-import '../../../core/core/widget/product_counter.dart';
-import '../../product_details/presentation/screen/product_details.dart';
-import 'color_and_size_cart_item.dart';
+
 
 class CartItemWidget extends StatelessWidget {
   GetProductsCartEntity getProductsCartEntity;

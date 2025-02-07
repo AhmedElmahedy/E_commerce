@@ -1,6 +1,6 @@
-import 'package:e_commerc/domain/entities/CategoriesOrBrandsResponseEntity.dart';
+import 'package:e_commerc/domain/entities/CategoryOrBrandResponseEntity.dart';
 
-class CategoriesOrBrandsResponseDto extends CategoriesOrBrandsResponseEntity {
+class CategoriesOrBrandsResponseDto extends CategoryOrBrandResponseEntity {
   CategoriesOrBrandsResponseDto(
       {super.results,
       super.metadata,
@@ -25,7 +25,6 @@ class CategoriesOrBrandsResponseDto extends CategoriesOrBrandsResponseEntity {
 
   String? statusMsg;
   String? message;
-
 }
 
 class CategoryOrBrandDataDto extends CategoryOrBrandDataEntity {
@@ -49,7 +48,6 @@ class CategoryOrBrandDataDto extends CategoryOrBrandDataEntity {
 
   String? createdAt;
   String? updatedAt;
-
 }
 
 class MetadataDto extends MetadataEntity {
@@ -64,5 +62,4 @@ class MetadataDto extends MetadataEntity {
     numberOfPages = json['numberOfPages'];
     limit = json['limit'];
   }
-
 }
