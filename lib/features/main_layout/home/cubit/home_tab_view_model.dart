@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_commerc/domain/entities/CategoriesOrBrandsResponseEntity.dart';
+import 'package:e_commerc/domain/entities/CategoryOrBrandResponseEntity.dart';
 import 'package:e_commerc/domain/use_cases/get_all_brands_use_case.dart';
 import 'package:e_commerc/domain/use_cases/get_all_category_use_case.dart';
 import 'package:e_commerc/features/main_layout/home/cubit/home_tab_states.dart';
@@ -17,20 +17,25 @@ class HomeTabViewModel extends Cubit<HomeTabStates> {
       {required this.getAllCategoryUseCase, required this.getAllBrandsUseCase})
       : super(HomeInitialState());
 
-  List<CategoryOrBrandDataEntity> categoriesList = [];
+  List<CategoryOrBrandDataEntity> categoryList = [];
   List<CategoryOrBrandDataEntity> brandsList = [];
   final List<String> adsImages = [
     ImageAssets.carouselSlider1,
     ImageAssets.carouselSlider2,
     ImageAssets.carouselSlider3,
   ];
+
+
   static HomeTabViewModel get(context) => BlocProvider.of(context);
+
+
   void getAllCategory() async {
     emit(HomeCategoryLoadingState());
     var either = await getAllCategoryUseCase.invoke();
     either.fold((error) => emit(HomeCategoryErrorState(failures: error)),
         (response) {
-      categoriesList = response.data ?? [];
+      categoryList = response.data ?? [];
+      print(categoryList);
       if (brandsList.isNotEmpty) {
         emit(HomeCategorySuccessState(responseEntity: response));
       }
@@ -43,7 +48,8 @@ class HomeTabViewModel extends Cubit<HomeTabStates> {
     either.fold((error) => Left(emit(HomeBrandsErrorState(failures: error))),
         (response) {
       brandsList = response.data ?? [];
-      if (categoriesList.isNotEmpty) {
+
+      if (categoryList.isNotEmpty) {
         emit(HomeBrandsSuccessState(responseEntity: response));
       }
     });

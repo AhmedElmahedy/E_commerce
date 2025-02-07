@@ -1,5 +1,6 @@
 import 'package:e_commerc/core/core/widget/hive_preference_util.dart';
 import 'package:e_commerc/features/cart/cubit/cart_view_model.dart';
+import 'package:e_commerc/features/main_layout/categories/cubit/category_tab_view_model.dart';
 import 'package:e_commerc/features/main_layout/home/cubit/home_tab_view_model.dart';
 import 'package:e_commerc/features/products_screen/presentation/cubit/products_view_model.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ void main() async {
 
   var token = HivePreferenceUtil.getData(key: "token") ;
   String route ;
-  if(token == null){
+  if(token == null  ){
     route = Routes.signInRoute;
   }else{
     route = Routes.mainRoute;
@@ -39,7 +40,7 @@ void main() async {
     ),
     BlocProvider<CartViewModel>(
       create: (context) => getIt<CartViewModel>(),
-    )
+    ),
   ], child: MyApp(route: route,)));
 }
 

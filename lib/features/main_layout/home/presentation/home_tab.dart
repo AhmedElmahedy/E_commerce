@@ -1,4 +1,5 @@
 import 'package:e_commerc/core/core/widget/dialog_utils.dart';
+import 'package:e_commerc/domain/di/di.dart';
 import 'package:e_commerc/features/main_layout/home/cubit/home_tab_states.dart';
 import 'package:e_commerc/features/main_layout/home/cubit/home_tab_view_model.dart';
 import 'package:e_commerc/features/main_layout/home/presentation/widgets/announcement_widget.dart';
@@ -41,11 +42,12 @@ class HomeTab extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
                           return CategoryOrBrandsItemsWidget(
-                              listCategory: HomeTabViewModel.get(context)
-                                  .categoriesList[index]);
+                              listCategory:
+                              HomeTabViewModel.get(context)
+                                  .categoryList[index]);
                         },
                         itemCount:
-                            HomeTabViewModel.get(context).categoriesList.length,
+                            HomeTabViewModel.get(context).categoryList.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,

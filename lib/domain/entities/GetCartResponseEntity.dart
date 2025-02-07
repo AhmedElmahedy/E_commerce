@@ -1,4 +1,4 @@
-import 'package:e_commerc/domain/entities/CategoriesOrBrandsResponseEntity.dart';
+import 'package:e_commerc/domain/entities/CategoryOrBrandResponseEntity.dart';
 import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
 
 class GetCartResponseEntity {
@@ -70,8 +70,8 @@ class GetProductEntity {
   String? title;
   num? quantity;
   String? imageCover;
-  CategoriesOrBrandsResponseEntity? category;
-  CategoriesOrBrandsResponseEntity? brand;
+  CategoryOrBrandResponseEntity? category;
+  CategoryOrBrandResponseEntity? brand;
   num? ratingsAverage;
 
 

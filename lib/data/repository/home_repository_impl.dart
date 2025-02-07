@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerc/data/data_sources/remote_data_source/home_remote_data_source.dart';
 import 'package:e_commerc/domain/entities/AddToCartResponseEntity.dart';
-import 'package:e_commerc/domain/entities/CategoriesOrBrandsResponseEntity.dart';
+import 'package:e_commerc/domain/entities/CategoryOrBrandResponseEntity.dart';
 import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
 import 'package:e_commerc/domain/failures.dart';
 import 'package:e_commerc/domain/repository/home_repository.dart';
@@ -14,8 +14,8 @@ class HomeRepositoryImpl implements HomeRepository {
   HomeRepositoryImpl({required this.homeRemoteDataSource});
 
   @override
-  Future<Either<Failures, CategoriesOrBrandsResponseEntity>>
-      getAllCategories() async {
+  Future<Either<Failures, CategoryOrBrandResponseEntity>>
+      getAllCategory() async {
     // TODO: implement getAllCategories
     var either = await homeRemoteDataSource.getAllCategories();
 
@@ -23,7 +23,7 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Either<Failures, CategoriesOrBrandsResponseEntity>>
+  Future<Either<Failures, CategoryOrBrandResponseEntity>>
       getAllBrands() async {
     // TODO: implement getAllBrands
     var either = await homeRemoteDataSource.getAllBrands();

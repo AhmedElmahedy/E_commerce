@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerc/domain/entities/CategoriesOrBrandsResponseEntity.dart';
+import 'package:e_commerc/core/core/resources/assets_manager.dart';
+import 'package:e_commerc/domain/entities/CategoryOrBrandResponseEntity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,7 +24,17 @@ class CategoryOrBrandsItemsWidget extends StatelessWidget {
           placeholder: (context, url) =>
               const Center(child: CircularProgressIndicator()),
           errorWidget: (context, url, error) =>
-              const Center(child: Icon(Icons.error)),
+              Container(
+                height: 70.h,
+                width: 70.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage(ImageAssets.categoryHomeImage),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
           imageBuilder: (context, imageProvider) {
             return Container(
               decoration: BoxDecoration(
@@ -37,23 +48,11 @@ class CategoryOrBrandsItemsWidget extends StatelessWidget {
           },
         ),
 
-        // ClipRRect(
-        //   borderRadius: BorderRadius.circular(100.r),
-        //   child: Container(
-        //     height: 100.h,
-        //     width: 100.w,
-        //     decoration: const BoxDecoration(
-        //       shape: BoxShape.circle,
-        //     ),
-        //     child: Image.asset(
-        //       ImageAssets.categoryHomeImage,
-        //       fit: BoxFit.cover,
-        //     ),
-        //   ),
-        // ),
+
         SizedBox(height: 7.h),
         Text(
           listCategory.name ?? "",
+          textAlign: TextAlign.center,
           style: getRegularStyle(color: ColorManager.darkBlue, fontSize: 14.sp),
         ),
       ],

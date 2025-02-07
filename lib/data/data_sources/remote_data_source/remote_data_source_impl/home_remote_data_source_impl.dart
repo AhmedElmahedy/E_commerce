@@ -5,7 +5,7 @@ import 'package:e_commerc/data/api_manager.dart';
 import 'package:e_commerc/data/data_sources/remote_data_source/home_remote_data_source.dart';
 import 'package:e_commerc/data/end_point.dart';
 import 'package:e_commerc/data/model/AddToCartResponseDto.dart';
-import 'package:e_commerc/data/model/CategoriesOrBrandsResponseDto.dart';
+import 'package:e_commerc/data/model/CategoryOrBrandsResponseDto.dart';
 import 'package:e_commerc/data/model/ProductResponseDto.dart';
 import 'package:e_commerc/domain/failures.dart';
 import 'package:injectable/injectable.dart';
@@ -70,8 +70,10 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     }
   }
 
+
   @override
   Future<Either<Failures, ProductResponseDto>> getAllProducts() async {
+    // TODO: implement getAllProducts
     try {
       var checkResult = await Connectivity().checkConnectivity();
       if (checkResult == ConnectivityResult.wifi ||

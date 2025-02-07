@@ -1,4 +1,4 @@
-import 'package:e_commerc/domain/entities/CategoriesOrBrandsResponseEntity.dart';
+import 'package:e_commerc/domain/entities/CategoryOrBrandResponseEntity.dart';
 
 class ProductResponseEntity {
   ProductResponseEntity(

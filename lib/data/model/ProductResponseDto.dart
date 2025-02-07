@@ -1,4 +1,4 @@
-import 'package:e_commerc/data/model/CategoriesOrBrandsResponseDto.dart';
+import 'package:e_commerc/data/model/CategoryOrBrandsResponseDto.dart';
 import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
 
 class ProductResponseDto extends ProductResponseEntity {

@@ -1,4 +1,4 @@
-import 'package:e_commerc/domain/entities/CategoriesOrBrandsResponseEntity.dart';
+import 'package:e_commerc/domain/entities/CategoryOrBrandResponseEntity.dart';
 import 'package:e_commerc/domain/failures.dart';
 
 abstract class HomeTabStates {}
@@ -9,7 +9,7 @@ class HomeCategoryErrorState extends HomeTabStates{
   HomeCategoryErrorState({required this.failures});
 }
 class HomeCategorySuccessState extends HomeTabStates{
-  CategoriesOrBrandsResponseEntity responseEntity;
+  CategoryOrBrandResponseEntity responseEntity;
   HomeCategorySuccessState({required this.responseEntity});
 }
 
@@ -21,6 +21,6 @@ class HomeBrandsErrorState extends HomeTabStates{
   HomeBrandsErrorState({required this.failures});
 }
 class HomeBrandsSuccessState extends HomeTabStates{
-  CategoriesOrBrandsResponseEntity responseEntity;
+  CategoryOrBrandResponseEntity responseEntity;
   HomeBrandsSuccessState({required this.responseEntity});
 }

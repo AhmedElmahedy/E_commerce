@@ -1,11 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/core/resources/assets_manager.dart';
 import '../../../../../core/core/resources/color_manager.dart';
 import '../../../../../core/core/resources/font_manager.dart';
 import '../../../../../core/core/resources/styles_manager.dart';
 import '../../../../../core/core/resources/values_manager.dart';
-
 
 class CategoryCardItem extends StatelessWidget {
   final String title;
@@ -18,18 +19,33 @@ class CategoryCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // Create a container for the category card
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: AppSize.s16),
+      margin: const EdgeInsets.symmetric(vertical: AppSize.s4),
       // Height of the card set with fixed size to make all image same size but it can be deleted without affecting the code
-      height: AppSize.s100,
+      height: AppSize.s120.h,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSize.s12),
         child: Stack(
           children: [
             // Background image for the category
-            Image.asset(
-              image,
-              fit: BoxFit.cover,
+            CachedNetworkImage(
+              imageUrl: image,
               width: double.infinity,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Center(
+                child: Image.asset(
+                  ImageAssets.categoryHomeImage,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+              ),
             ),
             // Overlay with category title and button
             Positioned.fill(
