@@ -2,13 +2,13 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:e_commerc/core/core/widget/hive_preference_util.dart';
 import 'package:e_commerc/data/api_manager.dart';
-import 'package:e_commerc/data/data_sources/remote_data_source/home_remote_data_source.dart';
 import 'package:e_commerc/data/end_point.dart';
 import 'package:e_commerc/data/model/AddToCartResponseDto.dart';
 import 'package:e_commerc/data/model/CategoryOrBrandsResponseDto.dart';
-import 'package:e_commerc/data/model/ProductResponseDto.dart';
 import 'package:e_commerc/domain/failures.dart';
 import 'package:injectable/injectable.dart';
+
+import '../remote_data_source/home_remote_data_source.dart';
 
 @Injectable(as: HomeRemoteDataSource)
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -71,31 +71,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
 
-  @override
-  Future<Either<Failures, ProductResponseDto>> getAllProducts() async {
-    // TODO: implement getAllProducts
-    try {
-      var checkResult = await Connectivity().checkConnectivity();
-      if (checkResult == ConnectivityResult.wifi ||
-          checkResult == ConnectivityResult.mobile) {
-        var response = await apiManager.getData(EndPoint.getAllProducts);
-        var getAllProductsResponse = ProductResponseDto.fromJson(response.data);
 
-        if (response.statusCode! >= 200 && response.statusCode! < 300) {
-          return Right(getAllProductsResponse);
-        } else {
-          return Left(
-              ServerError(errorMessage: getAllProductsResponse.message!));
-        }
-      } else {
-        // No internet
-        return Left(NetworkError(
-            errorMessage: 'No Internet Connection , Please Check Internet'));
-      }
-    } catch (e) {
-      return Left(Failures(errorMessage: e.toString()));
-    }
-  }
 
   @override
 Future<Either<Failures, AddToCartResponseDto>> addToCart(String productId) async {

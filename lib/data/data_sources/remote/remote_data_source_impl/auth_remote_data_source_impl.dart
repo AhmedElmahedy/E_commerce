@@ -1,13 +1,13 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
-import 'package:e_commerc/core/core/widget/shared_preference_util.dart';
 import 'package:e_commerc/data/api_manager.dart';
-import 'package:e_commerc/data/data_sources/remote_data_source/auth_remote_data_source.dart';
 import 'package:e_commerc/data/end_point.dart';
 import 'package:e_commerc/data/model/LoginResponseDto.dart';
 import 'package:e_commerc/data/model/RegisterResponseDto.dart';
 import 'package:e_commerc/domain/failures.dart';
 import 'package:injectable/injectable.dart';
+
+import '../remote_data_source/auth_remote_data_source.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {

@@ -1,14 +1,13 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:e_commerc/data/api_manager.dart';
-import 'package:e_commerc/data/data_sources/remote_data_source/get_cart_remote_data_source.dart';
-import 'package:e_commerc/domain/entities/GetCartResponseEntity.dart';
 import 'package:e_commerc/domain/failures.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/core/widget/hive_preference_util.dart';
 import '../../../end_point.dart';
 import '../../../model/GetCartResponseDto.dart';
+import '../remote_data_source/get_cart_remote_data_source.dart';
 
 @Injectable(as: GetCartRemoteDataSource)
 class GetCartRemoteDataSourceImpl implements GetCartRemoteDataSource {

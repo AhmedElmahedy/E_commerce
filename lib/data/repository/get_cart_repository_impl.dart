@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_commerc/data/data_sources/remote_data_source/get_cart_remote_data_source.dart';
 import 'package:e_commerc/domain/entities/GetCartResponseEntity.dart';
 import 'package:e_commerc/domain/failures.dart';
 import 'package:e_commerc/domain/repository/get_cart_repository.dart';
 import 'package:injectable/injectable.dart';
+
+import '../data_sources/remote/remote_data_source/get_cart_remote_data_source.dart';
 
 
 @Injectable(as: GetCartRepository)
