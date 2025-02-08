@@ -22,7 +22,7 @@ class GetCartRemoteDataSourceImpl implements GetCartRemoteDataSource {
       var checkResult = await Connectivity().checkConnectivity();
       if (checkResult == ConnectivityResult.wifi ||
           checkResult == ConnectivityResult.mobile) {
-        var token = await HivePreferenceUtil.getData(key: 'token');
+        var token = await HivePreferenceUtil.getData();
         if (token == null) {
           return left((Failures(errorMessage: "User is not authenticated")));
         }
@@ -53,7 +53,7 @@ class GetCartRemoteDataSourceImpl implements GetCartRemoteDataSource {
       var checkResult = await Connectivity().checkConnectivity();
       if (checkResult == ConnectivityResult.wifi ||
           checkResult == ConnectivityResult.mobile) {
-        var token = await HivePreferenceUtil.getData(key: 'token');
+        var token = await HivePreferenceUtil.getData();
         if (token == null) {
           return left((Failures(errorMessage: "User is not authenticated")));
         }
@@ -84,7 +84,7 @@ class GetCartRemoteDataSourceImpl implements GetCartRemoteDataSource {
       var checkResult = await Connectivity().checkConnectivity();
       if (checkResult == ConnectivityResult.wifi ||
           checkResult == ConnectivityResult.mobile) {
-        var token = await HivePreferenceUtil.getData(key: 'token');
+        var token = await HivePreferenceUtil.getData();
         if (token == null) {
           return left((Failures(errorMessage: "User is not authenticated")));
         }

@@ -12,8 +12,6 @@ import '../../../../core/core/resources/values_manager.dart';
 import '../../../../core/core/widget/main_text_field.dart';
 import '../../../../core/core/widget/validators.dart';
 
-
-
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
 
@@ -27,6 +25,22 @@ class ProfileTabState extends State<ProfileTab> {
   bool isPasswordReadOnly = true;
   bool isMobileNumberReadOnly = true;
   bool isAddressReadOnly = true;
+  String email = '';
+  String name = '';
+
+  @override
+  void initState() {
+    loadUserData();
+  }
+
+  void loadUserData() async {
+    String userEmail = await HivePreferenceUtil.getEmail();
+    String userName = await HivePreferenceUtil.getName();
+    setState(() {
+      email = userEmail;
+      name = userName;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,32 +51,35 @@ class ProfileTabState extends State<ProfileTab> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SvgPicture.asset(
-                SvgAssets.routeLogo,
-                height: AppSize.s40,
-                colorFilter: ColorFilter.mode(
-                  ColorManager.primary,
-                  BlendMode.srcIn,
-                ),
-              ),
-              SizedBox(height: AppSize.s20.h),
+              // SvgPicture.asset(
+              //   SvgAssets.routeLogo,
+              //   height: AppSize.s40,
+              //   colorFilter: ColorFilter.mode(
+              //     ColorManager.primary,
+              //     BlendMode.srcIn,
+              //   ),
+              // ),
+              // SizedBox(height: AppSize.s20.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Welcome, Mohamed',
+                    'Welcome, $name ',
                     style: getSemiBoldStyle(
                         color: ColorManager.primary, fontSize: FontSize.s18),
                   ),
-                  IconButton(onPressed: ()  {
-                    // todo : remove token
-                    HivePreferenceUtil.removeData(key: "token");
-                   Navigator.of(context).pushNamedAndRemoveUntil(Routes.signInRoute, (route)=> false);
-                  }, icon: Icon(Icons.logout ))
+                  IconButton(
+                      onPressed: () {
+                        // todo : remove token
+                        HivePreferenceUtil.removeData(key: "token");
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            Routes.signInRoute, (route) => false);
+                      },
+                      icon: Icon(Icons.logout))
                 ],
               ),
               Text(
-                'mohamed.N@gmail.com',
+                email,
                 style: getRegularStyle(
                     color: ColorManager.primary.withOpacity(.5),
                     fontSize: FontSize.s14),
@@ -74,8 +91,7 @@ class ProfileTabState extends State<ProfileTab> {
                 backgroundColor: ColorManager.white,
                 hint: 'Enter your full name',
                 label: 'Full Name',
-                controller:
-                    TextEditingController(text: 'Mohamed Mohamed Nabil'),
+                controller: TextEditingController(text: name),
                 labelTextStyle: getMediumStyle(
                     color: ColorManager.primary, fontSize: FontSize.s18),
                 suffixIcon: IconButton(
@@ -98,7 +114,7 @@ class ProfileTabState extends State<ProfileTab> {
                 backgroundColor: ColorManager.white,
                 hint: 'Enter your email address',
                 label: 'E-mail address',
-                controller: TextEditingController(text: 'mohamed.N@gmail.com'),
+                controller: TextEditingController(text: email),
                 labelTextStyle: getMediumStyle(
                     color: ColorManager.primary, fontSize: FontSize.s18),
                 suffixIcon: IconButton(
@@ -121,7 +137,7 @@ class ProfileTabState extends State<ProfileTab> {
                     isPasswordReadOnly = false;
                   });
                 },
-                controller: TextEditingController(text: '123456789123456'),
+                controller: TextEditingController(),
                 borderBackgroundColor: ColorManager.primary.withOpacity(.5),
                 readOnly: isPasswordReadOnly,
                 backgroundColor: ColorManager.white,
@@ -138,7 +154,7 @@ class ProfileTabState extends State<ProfileTab> {
               ),
               SizedBox(height: AppSize.s18.h),
               BuildTextField(
-                controller: TextEditingController(text: '01122118855'),
+                controller: TextEditingController(),
                 borderBackgroundColor: ColorManager.primary.withOpacity(.5),
                 readOnly: isMobileNumberReadOnly,
                 backgroundColor: ColorManager.white,
@@ -162,11 +178,11 @@ class ProfileTabState extends State<ProfileTab> {
               SizedBox(height: AppSize.s18.h),
               BuildTextField(
                 controller:
-                    TextEditingController(text: '6th October, street 11.....'),
+                    TextEditingController(),
                 borderBackgroundColor: ColorManager.primary.withOpacity(.5),
                 readOnly: isAddressReadOnly,
                 backgroundColor: ColorManager.white,
-                hint: '6th October, street 11.....',
+                hint: 'Enter Your Address',
                 label: 'Your Address',
                 labelTextStyle: getMediumStyle(
                     color: ColorManager.primary, fontSize: FontSize.s18),

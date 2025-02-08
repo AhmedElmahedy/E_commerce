@@ -81,7 +81,7 @@ Future<Either<Failures, AddToCartResponseDto>> addToCart(String productId) async
     if (checkResult == ConnectivityResult.wifi ||
         checkResult == ConnectivityResult.mobile) {
 
-      var token = await HivePreferenceUtil.getData(key: 'token') ;
+      var token = await HivePreferenceUtil.getData() ;
       if (token == null ){
         return left((Failures(errorMessage: "User is not authenticated")));
       }

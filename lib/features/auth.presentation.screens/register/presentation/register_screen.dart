@@ -1,4 +1,6 @@
+import 'package:e_commerc/core/core/routes_manager/routes.dart';
 import 'package:e_commerc/core/core/widget/dialog_utils.dart';
+import 'package:e_commerc/core/core/widget/hive_preference_util.dart';
 import 'package:e_commerc/domain/di/di.dart';
 import 'package:e_commerc/features/auth.presentation.screens/register/cubit/register_states.dart';
 import 'package:e_commerc/features/auth.presentation.screens/register/cubit/register_view_model.dart';
@@ -35,12 +37,16 @@ class RegisterScreen extends StatelessWidget {
               title: "Error",
               posActionName: "ok");
         } else if (state is RegisterSuccessState) {
+          HivePreferenceUtil.saveData( value: state.registerResponseEntity.token ?? '');
+          HivePreferenceUtil.saveName(value: state.registerResponseEntity.user?.name ?? '');
+          HivePreferenceUtil.saveEmail( value: state.registerResponseEntity.user?.name?? '');
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
               context: context,
               message: "Register Successfully",
               title: "Success",
               posActionName: "ok");
+          Navigator.pushReplacementNamed(context, Routes.mainRoute);
         }
       },
       child: Scaffold(

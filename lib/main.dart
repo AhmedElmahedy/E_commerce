@@ -20,7 +20,8 @@ void main() async {
   Hive.init(app.path);
   await HivePreferenceUtil.init();
 
-  var token = HivePreferenceUtil.getData(key: "token") ;
+
+  var token = HivePreferenceUtil.getData() ;
   String route ;
   if(token == null  ){
     route = Routes.signInRoute;
