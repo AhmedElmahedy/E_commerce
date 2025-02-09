@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 import '../../../../../core/core/resources/color_manager.dart';
 import '../../../../../core/core/resources/constants_manager.dart';
 import '../../../../../core/core/resources/values_manager.dart';
@@ -13,7 +12,9 @@ import 'favourite_item_details.dart';
 
 class FavoriteItem extends StatelessWidget {
   const FavoriteItem({super.key, required this.product});
+
   final Map<String, dynamic> product;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -63,9 +64,11 @@ class FavoriteItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                HeartButton(onTap: () {
-                  //TODO:remove product from wish list
-                }),
+                HeartButton(
+                    productId: "",
+                    onTap: () {
+                      //TODO:remove product from wish list
+                    }),
                 SizedBox(height: AppSize.s14.h),
                 AddToCartButton(
                   onPressed: () {

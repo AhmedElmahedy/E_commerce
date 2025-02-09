@@ -13,7 +13,6 @@ import '../../../../core/core/resources/font_manager.dart';
 import '../../../../core/core/resources/styles_manager.dart';
 import '../../../../core/core/resources/values_manager.dart';
 import '../../../../core/core/routes_manager/routes.dart';
-import '../../../../core/core/widget/home_screen_app_bar.dart';
 import '../../../../domain/entities/CategoryOrBrandResponseEntity.dart';
 import '../widgets/custom_product_widget.dart';
 
@@ -23,8 +22,14 @@ class ProductsScreen extends StatelessWidget {
   ProductsScreen({super.key, required this.categoryOrBrandDataEntity});
 
   @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   var bloc = context.read<ProductsViewModel>();
+  //   bloc.getAllProducts(widget.categoryOrBrandDataEntity?.id ?? '');
+  // }
+  @override
   Widget build(BuildContext context) {
-    var bloc = context.read<ProductsViewModel>();
+
     return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -92,7 +97,7 @@ class ProductsScreen extends StatelessWidget {
                       ),
                       Badge(
                         alignment: Alignment.topCenter,
-                        label: Text("${bloc.numOfCartItems}"),
+                        label: Text("${ProductsViewModel.get(context).numOfCartItems}"),
                         child: IconButton(
                             onPressed: () => Navigator.pushNamed(
                                 context, Routes.cartRoute),
@@ -106,55 +111,56 @@ class ProductsScreen extends StatelessWidget {
                 )),
             // leading: const SizedBox.shrink(),
           ),
-          body: BlocProvider(
-            create: (_) => getIt<ProductsViewModel>(),
-              // ..getAllProducts(categoryOrBrandDataEntity?.id ?? ''),
-            child: BlocBuilder<ProductsViewModel, ProductsStates>(
-                bloc: bloc..getAllProducts(categoryOrBrandDataEntity?.id ?? ''),
-              builder: (context,state){
-                if(state is ProductsSuccessState){
-                  return Padding(
-                    padding: const EdgeInsets.all(AppPadding.p16),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: GridView.builder(
-                            itemCount: state.responseEntity.data?.length ,
-                            gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8,
-                              childAspectRatio: 7 / 9,
-                            ),
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) {
-                                             return ProductDetails(
-                                                  product: state.responseEntity.data![index]);
-                                            }
-                                               ));
-                                  },
-                                  child: CustomProductWidget(
-                                      product: state.responseEntity.data![index]));
-                            },
-                            scrollDirection: Axis.vertical,
+          body: BlocBuilder<ProductsViewModel, ProductsStates>(
+            buildWhen: (previous, current) {
+              if(current is ProductsLoadingState||current is ProductsErrorState|| current is ProductsSuccessState){
+                return true;
+              }return false ;
+            },
+              bloc: ProductsViewModel.get(context)..getAllProducts(categoryOrBrandDataEntity?.id ?? ''),
+            builder: (context,state){
+              if(state is ProductsSuccessState){
+                return Padding(
+                  padding: const EdgeInsets.all(AppPadding.p16),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: GridView.builder(
+                          itemCount: state.responseEntity.data?.length ,
+                          gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 8,
+                            mainAxisSpacing: 8,
+                            childAspectRatio: 7 / 9,
                           ),
-                        )
-                      ],
-                    ),
-                  );
-                }
-                if(state is ProductsErrorState){
-                  return Center(child: Text(state.failures.errorMessage),);
-                }
-                return Center(child: CircularProgressIndicator(color: ColorManager.primary,),);
-              },
-            ),
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) {
+                                           return ProductDetails(
+                                                product: state.responseEntity.data![index]);
+                                          }
+                                             ));
+                                },
+                                child: CustomProductWidget(
+                                    product: state.responseEntity.data![index]));
+                          },
+                          scrollDirection: Axis.vertical,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
+              if(state is ProductsErrorState){
+                return Center(child: Text(state.failures.errorMessage),);
+              }
+              return Center(child: CircularProgressIndicator(color: ColorManager.primary,),);
+            },
           )
         );
   }

@@ -2,6 +2,7 @@ import 'package:e_commerc/core/core/routes_manager/routes.dart';
 import 'package:e_commerc/core/core/widget/dialog_utils.dart';
 import 'package:e_commerc/core/core/widget/hive_preference_util.dart';
 import 'package:e_commerc/domain/di/di.dart';
+import 'package:e_commerc/features/auth.presentation.screens/login/presentation/login_screen.dart';
 import 'package:e_commerc/features/auth.presentation.screens/register/cubit/register_states.dart';
 import 'package:e_commerc/features/auth.presentation.screens/register/cubit/register_view_model.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,20 @@ import '../../../../../../core/core/widget/main_text_field.dart';
 import '../../../../../../core/core/widget/validators.dart';
 
 class RegisterScreen extends StatelessWidget {
-  RegisterViewModel viewModel = getIt<RegisterViewModel>();
-
   RegisterScreen({super.key});
+
+  static _checkHiveData() async {
+    String? token = await HivePreferenceUtil.getData();
+    String? email = await HivePreferenceUtil.getEmail();
+    String? name = await HivePreferenceUtil.getName();
+
+    // todo: Check return data
+    print("Token: ${token ?? 'No Token Found'}");
+    print("Email: ${email ?? 'No Email Found'}");
+    print("Name: ${name ?? 'No Name Found'}");
+  }
+
+  RegisterViewModel viewModel = getIt<RegisterViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +49,13 @@ class RegisterScreen extends StatelessWidget {
               title: "Error",
               posActionName: "ok");
         } else if (state is RegisterSuccessState) {
-          HivePreferenceUtil.saveData( value: state.registerResponseEntity.token ?? '');
-          HivePreferenceUtil.saveName(value: state.registerResponseEntity.user?.name ?? '');
-          HivePreferenceUtil.saveEmail( value: state.registerResponseEntity.user?.name?? '');
+          HivePreferenceUtil.saveData(
+              value: state.registerResponseEntity.token ?? '');
+          HivePreferenceUtil.saveName(
+              value: state.registerResponseEntity.user?.name ?? '');
+          HivePreferenceUtil.saveEmail(
+              value: state.registerResponseEntity.user?.name ?? '');
+          _checkHiveData();
           DialogUtils.hideLoading(context);
           DialogUtils.showMessage(
               context: context,
@@ -133,7 +149,8 @@ class RegisterScreen extends StatelessWidget {
                           label: 'Sign Up',
                           backgroundColor: ColorManager.white,
                           textStyle: getBoldStyle(
-                              color: ColorManager.primary, fontSize: AppSize.s20),
+                              color: ColorManager.primary,
+                              fontSize: AppSize.s20),
                           onTap: () {
                             viewModel.register();
                             // Navigator.pushNamed(context, Routes.mainRoute);

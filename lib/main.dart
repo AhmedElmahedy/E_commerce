@@ -21,7 +21,7 @@ void main() async {
   await HivePreferenceUtil.init();
 
 
-  var token = HivePreferenceUtil.getData() ;
+  var token = await HivePreferenceUtil.getData() ;
   String route ;
   if(token == null  ){
     route = Routes.signInRoute;

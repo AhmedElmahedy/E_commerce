@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:e_commerc/domain/entities/AddProductsWishlistResponseEntity.dart';
 import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
 import 'package:e_commerc/domain/failures.dart';
 import 'package:e_commerc/domain/repository/get_products_repository.dart';
@@ -18,5 +19,13 @@ class GetProductsRepositoryImpl implements GetProductsRepository {
     var either =
         await getProductsRemoteDataSource.getProductsFromCategory(categoryId);
     return either.fold((error) => Left(error), (response) => Right(response));
+  }
+
+  @override
+  Future<Either<Failures, AddProductsWishlistResponseEntity>> addWishlist(String productId)async {
+    // TODO: implement addWishlist
+   var either = await getProductsRemoteDataSource.addWishlist(productId);
+   return either.fold((error) =>Left(error) ,
+       (response)=> Right(response));
   }
 }
