@@ -7,6 +7,6 @@ import 'package:e_commerc/domain/failures.dart';
 abstract class HomeRepository {
   Future<Either<Failures, CategoryOrBrandResponseEntity>> getAllCategory();
   Future<Either<Failures, CategoryOrBrandResponseEntity>> getAllBrands();
-  Future<Either<Failures, ProductResponseEntity>> getAllProducts();
+
   Future<Either<Failures, AddToCartResponseEntity>> addTOCart(String productId);
 }

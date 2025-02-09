@@ -8,6 +8,9 @@ import 'package:injectable/injectable.dart';
 class LoginViewModel extends Cubit <LoginStates> {
   LoginUseCase loginUseCase;
   LoginViewModel({required this.loginUseCase}) : super(LoginInitialState());
+
+  static LoginViewModel get(context) => BlocProvider.of(context);
+
   var emailController = TextEditingController(text: "ahmed21@route.com");
   var passwordController = TextEditingController(text: "ahmed1234");
   var formKey = GlobalKey<FormState>();

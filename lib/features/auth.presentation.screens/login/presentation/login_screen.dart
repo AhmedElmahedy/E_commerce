@@ -1,6 +1,5 @@
 import 'package:e_commerc/core/core/widget/dialog_utils.dart';
 import 'package:e_commerc/core/core/widget/hive_preference_util.dart';
-import 'package:e_commerc/core/core/widget/shared_preference_util.dart';
 import 'package:e_commerc/domain/di/di.dart';
 import 'package:e_commerc/features/auth.presentation.screens/login/cubit/login_states.dart';
 import 'package:e_commerc/features/auth.presentation.screens/login/cubit/login_view_model.dart';
@@ -23,7 +22,17 @@ import '../../../../../../core/core/widget/validators.dart';
 class LoginScreen extends StatelessWidget {
   LoginViewModel viewModel = getIt<LoginViewModel>();
   LoginScreen({super.key});
+  void _checkHiveData() async {
+    String? token = await HivePreferenceUtil.getData();
+    String? email = await HivePreferenceUtil.getEmail();
+    String? name = await HivePreferenceUtil.getName();
 
+    print("===== Hive Data Check =====");
+    print("Token: ${token ?? 'No Token Found'}");
+    print("Email: ${email ?? 'No Email Found'}");
+    print("Name: ${name ?? 'No Name Found'}");
+    print("===========================");
+  }
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginViewModel,LoginStates>(
@@ -41,7 +50,10 @@ class LoginScreen extends StatelessWidget {
           DialogUtils.showMessage(context: context, message: "Login Successfully",
               title: "Success",posActionName: "ok",);
           // todo : save token
-          HivePreferenceUtil.saveData(key: "token", value: states.loginResponseEntity.token);
+          HivePreferenceUtil.saveData( value: states.loginResponseEntity.token ??'');
+          HivePreferenceUtil.saveEmail(value:states.loginResponseEntity.user?.email ?? '');
+          HivePreferenceUtil.saveName(value: states.loginResponseEntity.user?.name ?? '');
+          _checkHiveData();
           Navigator.pushReplacementNamed(context, Routes.mainRoute);
         }
       },

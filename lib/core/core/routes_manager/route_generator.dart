@@ -1,5 +1,6 @@
 import 'package:e_commerc/core/core/routes_manager/routes.dart';
 import 'package:flutter/material.dart';
+import '../../../domain/entities/CategoryOrBrandResponseEntity.dart';
 import '../../../features/auth.presentation.screens/login/presentation/login_screen.dart';
 import '../../../features/auth.presentation.screens/register/presentation/register_screen.dart';
 import '../../../features/cart/screens/cart_screen.dart';
@@ -16,8 +17,11 @@ class RouteGenerator {
       case Routes.mainRoute:
         return MaterialPageRoute(builder: (_) =>  MainLayout());
 
-      case Routes.productsScreenRoute:
-        return MaterialPageRoute(builder: (_) =>  ProductsScreen());
+      case Routes.productsScreenRoute:{
+        CategoryOrBrandDataEntity? categoryOrBrandDataEntity = settings.arguments as CategoryOrBrandDataEntity?;
+       return MaterialPageRoute(builder: (_) =>  ProductsScreen(categoryOrBrandDataEntity: categoryOrBrandDataEntity,));
+      }
+
 
       // case Routes.productDetails:
       //   return MaterialPageRoute(builder: (_) =>  ProductDetails());

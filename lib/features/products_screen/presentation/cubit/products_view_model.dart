@@ -1,17 +1,17 @@
 import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
 import 'package:e_commerc/domain/use_cases/add_to_cart_use_case.dart';
-import 'package:e_commerc/domain/use_cases/get_all_products_use_case.dart';
+import 'package:e_commerc/domain/use_cases/get_products_use_case.dart';
 import 'package:e_commerc/features/products_screen/presentation/cubit/products_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
 class ProductsViewModel extends Cubit<ProductsStates> {
-  GetAllProductsUseCase getAllProductsUseCase;
+  GetProductsUseCase getProductsUseCase;
   AddToCartUseCase addToCartUseCase;
 
   ProductsViewModel(
-      {required this.getAllProductsUseCase, required this.addToCartUseCase})
+      {required this.getProductsUseCase, required this.addToCartUseCase})
       : super(ProductsInitialState());
 
   // todo : hold data - handle logic
@@ -20,9 +20,9 @@ class ProductsViewModel extends Cubit<ProductsStates> {
 
   static ProductsViewModel get(context) => BlocProvider.of(context);
 
-  void getAllProducts() async {
+  void getAllProducts(String categoryId) async {
     emit(ProductsLoadingState());
-    var either = await getAllProductsUseCase.invoke();
+    var either = await getProductsUseCase.invoke(categoryId);
     either.fold((error) {
       emit(ProductsErrorState(failures: error));
     }, (response) {

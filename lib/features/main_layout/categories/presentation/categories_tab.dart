@@ -15,7 +15,7 @@ class CategoriesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<CategoryTabViewModel>()..getCategory(),
+      create: (context) => getIt<CategoryTabViewModel>()..getCategory(),
       child: BlocBuilder<CategoryTabViewModel, CategoryTabStates>(
           buildWhen: (previous, current) {
         if (current is GetCategoriesSuccessState ||
