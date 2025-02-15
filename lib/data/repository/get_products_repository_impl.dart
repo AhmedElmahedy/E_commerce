@@ -28,4 +28,12 @@ class GetProductsRepositoryImpl implements GetProductsRepository {
    return either.fold((error) =>Left(error) ,
        (response)=> Right(response));
   }
+
+  @override
+  Future<Either<Failures, ProductResponseEntity>> getProductsWishlist()async {
+    // TODO: implement getProductsWishlist
+    var either = await getProductsRemoteDataSource.getProductsWishlist();
+    return either.fold((error) =>Left(error) ,
+            (response)=> Right(response));
+  }
 }

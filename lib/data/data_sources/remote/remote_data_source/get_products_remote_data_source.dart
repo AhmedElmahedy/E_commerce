@@ -7,5 +7,7 @@ import '../../../../domain/failures.dart';
 abstract class GetProductsRemoteDataSource {
   Future<Either<Failures, ProductResponseEntity>> getProductsFromCategory(String categoryId);
   Future<Either<Failures, AddProductsWishlistResponseEntity>> addWishlist(String productId);
+  Future<Either<Failures, ProductResponseEntity>> getProductsWishlist();
+
 
 }

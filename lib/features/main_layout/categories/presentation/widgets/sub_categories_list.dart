@@ -1,16 +1,11 @@
-import 'package:e_commerc/core/core/widget/dialog_utils.dart';
 import 'package:e_commerc/features/main_layout/categories/cubit/category_tab_view_model.dart';
-import 'package:e_commerc/features/products_screen/presentation/screens/products_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/core/resources/assets_manager.dart';
 import '../../../../../core/core/resources/color_manager.dart';
 import '../../../../../core/core/resources/font_manager.dart';
 import '../../../../../core/core/resources/styles_manager.dart';
 import '../../../../../core/core/resources/values_manager.dart';
-import '../../../../../core/core/routes_manager/routes.dart';
-import '../../../../../domain/entities/CategoryOrBrandResponseEntity.dart';
 import '../../cubit/category_tab_states.dart';
 import 'category_card_item.dart';
 import 'sub_category_item.dart';

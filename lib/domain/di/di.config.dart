@@ -45,6 +45,8 @@ import '../../features/auth.presentation.screens/register/cubit/register_view_mo
 import '../../features/cart/cubit/cart_view_model.dart' as _i70;
 import '../../features/main_layout/categories/cubit/category_tab_view_model.dart'
     as _i607;
+import '../../features/main_layout/favourite/cubit/favourite_view_model.dart'
+    as _i489;
 import '../../features/main_layout/home/cubit/home_tab_view_model.dart'
     as _i222;
 import '../../features/products_screen/presentation/cubit/products_view_model.dart'
@@ -61,6 +63,7 @@ import '../use_cases/get_all_brands_use_case.dart' as _i59;
 import '../use_cases/get_all_category_use_case.dart' as _i1069;
 import '../use_cases/get_cart_use_case.dart' as _i220;
 import '../use_cases/get_products_use_case.dart' as _i109;
+import '../use_cases/get_products_wishlist_use_case.dart' as _i806;
 import '../use_cases/get_sub_categories_use_case.dart' as _i817;
 import '../use_cases/login_use_case.dart' as _i119;
 import '../use_cases/register_use_case.dart' as _i526;
@@ -121,6 +124,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i617.AddProductsWishlistUseCase>(() =>
         _i617.AddProductsWishlistUseCase(
             getProductsRepository: gh<_i210.GetProductsRepository>()));
+    gh.factory<_i806.GetProductsWishlistUseCase>(() =>
+        _i806.GetProductsWishlistUseCase(
+            getProductsRepository: gh<_i210.GetProductsRepository>()));
     gh.factory<_i661.AddToCartUseCase>(() =>
         _i661.AddToCartUseCase(homeRepository: gh<_i326.HomeRepository>()));
     gh.factory<_i59.GetAllBrandsUseCase>(() =>
@@ -142,6 +148,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i150.RegisterViewModel>(() =>
         _i150.RegisterViewModel(registerUseCase: gh<_i526.RegisterUseCase>()));
+    gh.factory<_i489.FavouriteViewModel>(() => _i489.FavouriteViewModel(
+        getProductsWishlistUseCase: gh<_i806.GetProductsWishlistUseCase>()));
     gh.factory<_i222.HomeTabViewModel>(() => _i222.HomeTabViewModel(
           getAllCategoryUseCase: gh<_i1069.GetAllCategoryUseCase>(),
           getAllBrandsUseCase: gh<_i59.GetAllBrandsUseCase>(),

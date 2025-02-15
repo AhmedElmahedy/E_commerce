@@ -7,7 +7,8 @@ class EndPoint {
   static const String addToCart = "/api/v1/cart";
   static const String getCart = "/api/v1/cart";
   static const String deleteCart = "/api/v1/cart";
-  static const String addWishlist ="/api/v1/wishlist";
+  static const String wishlist ="/api/v1/wishlist";
+
   static  String subcategory (String id){
    return "/api/v1/categories/$id/subcategories";
   }
