@@ -8,11 +8,10 @@ import '../../../../core/core/resources/color_manager.dart';
 import '../../../../core/core/resources/styles_manager.dart';
 import '../../../../core/core/widget/heart_button.dart';
 
-
-
 class CustomProductWidget extends StatelessWidget {
- ProductDataEntity product;
- CustomProductWidget({super.key, required this.product});
+  ProductDataEntity product;
+
+  CustomProductWidget({super.key, required this.product});
 
   String truncateTitle(String title) {
     List<String> words = title.split(' ');
@@ -64,25 +63,21 @@ class CustomProductWidget extends StatelessWidget {
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
 
-                // ClipRRect(
-                //   borderRadius:
-                //       BorderRadius.vertical(top: Radius.circular(14.r)),
-                //   child: Image.asset(
-                //     image,
-                //     fit: BoxFit.cover,
-                //     width: width,
-                //   ),
-                // ),
                 Positioned(
                     top: 8.h,
-                    right:8.w,
-                    child: HeartButton(onTap: () {})),
+                    right: 8.w,
+                    child: HeartButton(
+                        productId: product.id ?? "",
+                        onTap: () {
+                          ProductsViewModel.get(context)
+                              .addProductWishlist(product.id ?? '');
+                        })),
               ],
             ),
           ),
           SingleChildScrollView(
             child: Padding(
-              padding:  EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
+              padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -93,7 +88,7 @@ class CustomProductWidget extends StatelessWidget {
                       fontSize: 14.sp,
                     ),
                   ),
-                  SizedBox(height:2.h),
+                  SizedBox(height: 2.h),
                   Text(
                     truncateDescription(product.description ?? ''),
                     style: getRegularStyle(
@@ -103,7 +98,6 @@ class CustomProductWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 2.h),
                   SizedBox(
-
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -151,11 +145,12 @@ class CustomProductWidget extends StatelessWidget {
                           onTap: () {
                             // todo : Add To Cart
                             print("click add to cart");
-                            ProductsViewModel.get(context).addToCart(product.id ?? "");
+                            ProductsViewModel.get(context)
+                                .addToCart(product.id ?? "");
                           },
                           child: Container(
                             height: 30.h,
-                            width:30.w,
+                            width: 30.w,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: ColorManager.primary,

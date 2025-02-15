@@ -27,13 +27,13 @@ class HivePreferenceUtil {
     return token is String ? token : null;
   }
 
-  static Future<String> getEmail() async {
+  static Future<String?> getEmail() async {
 
   var email =  await box.get("email");
   return email is String ? email : "" ;
   }
 
-  static Future<String> getName() async {
+  static Future<String?> getName() async {
     var name =  await box.get("name");
     return name is String ? name : "" ;
   }
@@ -44,6 +44,9 @@ class HivePreferenceUtil {
       return true;
     }
     return false;
+  }
+  static Future<void> closeBox() async {
+    await box.close();
   }
 }
 

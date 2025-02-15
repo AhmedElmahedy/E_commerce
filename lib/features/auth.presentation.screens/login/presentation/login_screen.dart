@@ -20,19 +20,20 @@ import '../../../../../../core/core/widget/validators.dart';
 
 
 class LoginScreen extends StatelessWidget {
-  LoginViewModel viewModel = getIt<LoginViewModel>();
+
   LoginScreen({super.key});
-  void _checkHiveData() async {
+  static _checkHiveData() async {
     String? token = await HivePreferenceUtil.getData();
     String? email = await HivePreferenceUtil.getEmail();
     String? name = await HivePreferenceUtil.getName();
 
-    print("===== Hive Data Check =====");
+    // todo: Check return data
     print("Token: ${token ?? 'No Token Found'}");
     print("Email: ${email ?? 'No Email Found'}");
     print("Name: ${name ?? 'No Name Found'}");
-    print("===========================");
+
   }
+  LoginViewModel viewModel = getIt<LoginViewModel>();
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginViewModel,LoginStates>(

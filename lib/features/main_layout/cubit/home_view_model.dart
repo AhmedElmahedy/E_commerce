@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../categories/presentation/categories_tab.dart';
-import '../favourite/presentation/favourite_screen.dart';
+import '../favourite/presentation/screen/favourite_screen.dart';
 import '../home/presentation/home_tab.dart';
 import '../profile_tab/presentation/profile_tab.dart';
 

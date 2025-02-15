@@ -34,11 +34,11 @@ class ProfileTabState extends State<ProfileTab> {
   }
 
   void loadUserData() async {
-    String userEmail = await HivePreferenceUtil.getEmail();
-    String userName = await HivePreferenceUtil.getName();
+    String? userEmail = await HivePreferenceUtil.getEmail();
+    String? userName = await HivePreferenceUtil.getName();
     setState(() {
-      email = userEmail;
-      name = userName;
+      email = userEmail?? '';
+      name = userName?? '';
     });
   }
 
@@ -72,6 +72,9 @@ class ProfileTabState extends State<ProfileTab> {
                       onPressed: () {
                         // todo : remove token
                         HivePreferenceUtil.removeData(key: "token");
+                        HivePreferenceUtil.removeData(key: "email");
+                        HivePreferenceUtil.removeData(key: "name");
+
                         Navigator.of(context).pushNamedAndRemoveUntil(
                             Routes.signInRoute, (route) => false);
                       },

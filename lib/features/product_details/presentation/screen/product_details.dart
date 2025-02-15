@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerc/core/core/widget/dialog_utils.dart';
 import 'package:e_commerc/domain/entities/ProductResponseEntity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -12,8 +14,9 @@ import '../widgets/product_label.dart';
 import '../widgets/product_rating.dart';
 
 class ProductDetails extends StatelessWidget {
-  ProductDataEntity product;
-   ProductDetails({super.key ,required this.product});
+  final ProductDataEntity product;
+
+  ProductDetails({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -44,44 +47,53 @@ class ProductDetails extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 50.h),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.r),
                   border: Border.all(color: ColorManager.primary)),
               child: ImageSlideshow(
-                initialPage: 0,
-                indicatorColor: ColorManager.primaryDark,
-                indicatorBackgroundColor: ColorManager.white,
-                indicatorBottomPadding: 20.h,
-                isLoop: true,
-                autoPlayInterval: 3000,
-                children: product.images!
-                    .map((url) => Image.network(
-                          url,
-                          width: double.infinity,
-                          height: 300.h,
-                          fit: BoxFit.fill,
-                        ))
-                    .toList(),
+                  initialPage: 0,
+                  indicatorColor: ColorManager.primaryDark,
+                  indicatorBackgroundColor: ColorManager.white,
+                  indicatorBottomPadding: 20.h,
+                  isLoop: true,
+                  autoPlayInterval: 3000,
+                  children: (product.images ?? [])
+                      .map((url) =>
+                      CachedNetworkImage(
+                        imageUrl: url,
+                        width: double.infinity,
+                        height: 300.h,
+                        fit: BoxFit.fill,
+                        placeholder: (context, url) =>
+                            Center(
+                              child: CircularProgressIndicator(
+                                  color: ColorManager.primary),
+                            ),
+                        errorWidget: (context, url, error) =>
+                            Icon(Icons.error, color: Colors.red),
+                      )).toList()
               ),
             ),
             SizedBox(
               height: 24.h,
             ),
-             ProductLabel(
-                productName: product.title ?? '' , productPrice: 'EGP ${product.price}'),
+            ProductLabel(
+                productName: product.title ?? '',
+                productPrice: 'EGP ${product.price ??0}'),
             SizedBox(
               height: 16.h,
             ),
-             ProductRating(
-                productBuyers: "${product.sold}", productRating: '${product.ratingsAverage}'),
+            ProductRating(
+                productBuyers: "${product.sold ??0}",
+                productRating: '${product.ratingsAverage ?? 0.0}'),
             SizedBox(
               height: 16.h,
             ),
-             ProductDescription(
+            ProductDescription(
                 productDescription:
-                    product.description ?? ''),
+                product.description ?? ''),
             // ProductSize(
             //   size: const [35, 38, 39, 40],
             //   onSelected: () {},
@@ -106,18 +118,18 @@ class ProductDetails extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'Total price', 
+                      'Total price',
                       style: getMediumStyle(
-                              color: ColorManager.primary.withOpacity(.6))
+                          color: ColorManager.primary)
                           .copyWith(fontSize: 18.sp),
                     ),
                     SizedBox(
                       height: 12.h,
                     ),
-                    Text('EGP ${product.price}',
+                    Text('EGP ${product.price ?? 0}',
                         style:
-                            getMediumStyle(color: ColorManager.appBarTitleColor)
-                                .copyWith(fontSize: 18.sp))
+                        getMediumStyle(color: ColorManager.appBarTitleColor)
+                            .copyWith(fontSize: 18.sp))
                   ],
                 ),
                 SizedBox(
@@ -126,7 +138,9 @@ class ProductDetails extends StatelessWidget {
                 Expanded(
                   child: CustomElevatedButton(
                     label: 'Add to cart',
-                    onTap: () {},
+                    onTap: () {
+                      // todo : Add TO CART
+                    },
                     prefixIcon: Icon(
                       Icons.add_shopping_cart_outlined,
                       color: ColorManager.white,

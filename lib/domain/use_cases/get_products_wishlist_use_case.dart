@@ -8,11 +8,11 @@ import 'package:injectable/injectable.dart';
 import '../failures.dart';
 
 @injectable
-class GetProductsUseCase {
+class GetProductsWishlistUseCase {
   GetProductsRepository getProductsRepository;
-  GetProductsUseCase({required this.getProductsRepository});
+  GetProductsWishlistUseCase({required this.getProductsRepository});
 
-  Future<Either<Failures, ProductResponseEntity>> invoke(String categoryId){
-    return getProductsRepository.getProductsFromCategory(categoryId);
+  Future<Either<Failures, ProductResponseEntity>> invoke(){
+    return getProductsRepository.getProductsWishlist();
   }
 }
