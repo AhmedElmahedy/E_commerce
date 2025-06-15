@@ -1,16 +1,33 @@
-# e_commerc
+🛒 E-Commerce App – Cross-Platform Mobile Application
+A cross-platform e-commerce app that allows users to browse, search, and purchase products or services online with a smooth and intuitive user experience.
 
-A new Flutter project.
+🧰 Technologies Used:
+Flutter, BLoC (State Management)
 
-## Getting Started
+REST APIs (External)
 
-This project is a starting point for a Flutter application.
+Hive (Local Storage)
 
-A few resources to get you started if this is your first Flutter project:
+Clean Architecture (MVVM)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+💡 Key Contributions:
+Developed a modular and scalable mobile app following MVVM and Clean Architecture principles.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Implemented full authentication flow: account creation, login, logout, token management, profile page, and automatic data clearing via Hive.
+
+Designed a dynamic product catalog with category filters, product details (images, descriptions, pricing, and reviews).
+
+Built a shopping cart system with add, edit, remove, and quantity adjustment functionalities.
+
+Added a wishlist (favorites) feature allowing users to save items for later.
+
+Integrated with RESTful APIs using Dio to handle products, categories, brands, user profiles, and order actions.
+
+Designed all UI using custom reusable widgets to ensure a consistent and responsive design.
+
+📈 Impact:
+Delivered a fully functional e-commerce solution with clean code and excellent performance.
+
+Demonstrated advanced skills in Flutter state management, API integration, and scalable architecture design.
+
+Enhanced user engagement and shopping efficiency through thoughtful UX and well-structured code.
